@@ -35,6 +35,7 @@ export default class ContentLoader extends Component {
             frequence: props.duration / 2
         }
         this._animate = new Animated.Value(0)
+        this._isMounted =  false
         this.loopAnimation = this
             .loopAnimation
             .bind(this)
@@ -48,11 +49,21 @@ export default class ContentLoader extends Component {
         }
         return x
     }
+
     componentDidMount(props) {
+        this._isMounted = true
         this.loopAnimation()
     }
 
+    componentWillUnmount() {
+        this._isMounted = false
+    }
+
     loopAnimation() {
+
+        if (!this._isMounted) {
+            return;
+        }
 
         // setup interpolate
         let interpolator = interpolate(this.state, {
@@ -62,6 +73,10 @@ export default class ContentLoader extends Component {
         // start animation
         let start = Date.now();
         this._animation = () => {
+            if (!this._isMounted) {
+                return;
+            }
+
             const now = Date.now();
             let t = (now - start) / this.props.duration;
             if (t > 1) {
