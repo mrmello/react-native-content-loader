@@ -23,8 +23,8 @@
     ],
     "peerDependencies": {
         "expo": "16.0.0",
-        "react": "16.0.0-alpha.6",
-        "react-native": "https://github.com/expo/react-native/archive/sdk-16.0.0.tar.gz",
+        "react": "16.0.0-alpha.12",
+        "react-native": "https://github.com/expo/react-native/archive/sdk-17.0.0.tar.gz",
         "prop-types": "^15.5.10"
     },
     "dependencies": {
